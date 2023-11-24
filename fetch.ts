@@ -16,8 +16,16 @@ if (!year) {
     throw new Error('No year provided');
 }
 
+if (year < 2015 || year > (new Date()).getFullYear()) {
+    throw new Error('Year must be between 2015 and current year');
+}
+
 if (!day) {
     throw new Error('No day provided');
+}
+
+if (day < 1 || day > 25) {
+    throw new Error('Day must be between 1 and 25');
 }
 
 async function main() {
