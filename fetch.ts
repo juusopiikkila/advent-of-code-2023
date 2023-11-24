@@ -12,6 +12,14 @@ if (!sessionToken) {
     throw new Error('No session token provided');
 }
 
+if (!year) {
+    throw new Error('No year provided');
+}
+
+if (!day) {
+    throw new Error('No day provided');
+}
+
 async function main() {
     await copy('./_template', `./${day}`);
 
