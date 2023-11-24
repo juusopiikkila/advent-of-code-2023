@@ -1,6 +1,6 @@
 # Fetching puzzle input data
 
-Use the following command to fetch the current day input data:
+Use the following command to fetch the input data:
 
 ```bash
 yarn fetch [--day <day>]
