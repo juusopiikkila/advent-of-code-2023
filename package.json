@@ -6,9 +6,9 @@
     "license": "MIT",
     "packageManager": "yarn@4.0.2",
     "scripts": {
-        "dev": "ts-node-dev --no-notify --respawn --ignore-watch node_modules",
+        "dev": "ts-node-dev --no-notify --respawn --ignore-watch node_modules index.ts",
         "lint": "eslint . --ext \".ts\"",
-        "debug": "ts-node-dev --inspect --respawn --ignore-watch node_modules",
+        "debug": "ts-node-dev --inspect --respawn --ignore-watch node_modules index.ts",
         "fetch": "ts-node-dev ./fetch.ts"
     },
     "dependencies": {
