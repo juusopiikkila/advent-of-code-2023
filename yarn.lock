@@ -656,6 +656,7 @@ __metadata:
     fs-extra: "npm:^11.1.1"
     lodash-es: "npm:^4.17.21"
     minimist: "npm:^1.2.8"
+    ts-node: "npm:^10.9.1"
     ts-node-dev: "npm:^2.0.0"
     typescript: "npm:^5.3.2"
   languageName: unknown
@@ -3509,7 +3510,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^10.4.0":
+"ts-node@npm:^10.4.0, ts-node@npm:^10.9.1":
   version: 10.9.1
   resolution: "ts-node@npm:10.9.1"
   dependencies:
