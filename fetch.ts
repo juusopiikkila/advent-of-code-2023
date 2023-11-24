@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { copy, writeFile } from 'fs-extra';
+import { copy, writeFile, exists } from 'fs-extra';
 import minimist from 'minimist';
 
 const argv = minimist(process.argv.slice(2));
@@ -21,6 +21,10 @@ if (day < 1 || day > 25) {
 }
 
 async function main() {
+    if (await exists(`./${day}`)) {
+        throw new Error(`Day ${day} already exists`);
+    }
+
     await copy('./_template', `./${day}`);
 
     const response = await fetch(`https://adventofcode.com/${year}/day/${day}/input`, {
