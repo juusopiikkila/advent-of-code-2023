@@ -9,7 +9,7 @@ function part2(data: string[]): number {
     return 0;
 }
 
-async function main() {
+export async function main() {
     const data = await getInput(__dirname);
     const testData = await getExampleInput(__dirname);
 
@@ -21,5 +21,3 @@ async function main() {
 
     console.log('Part 2', part2(data));
 }
-
-main();
