@@ -3,7 +3,7 @@
 Use the following command to fetch the current day input data:
 
 ```bash
-yarn fetch [--year <year>] [--day <day>]
+yarn fetch [--day <day>]
 ```
 
 # Running the puzzle

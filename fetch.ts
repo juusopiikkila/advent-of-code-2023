@@ -4,20 +4,12 @@ import minimist from 'minimist';
 
 const argv = minimist(process.argv.slice(2));
 
-const year = argv.year || process.env.YEAR || (new Date()).getFullYear();
+const year = (new Date()).getFullYear();
 const day = argv.day || process.env.DAY || (new Date()).getDate();
 const sessionToken = process.env.SESSION_TOKEN;
 
 if (!sessionToken) {
     throw new Error('No session token provided');
-}
-
-if (!year) {
-    throw new Error('No year provided');
-}
-
-if (year < 2015 || year > (new Date()).getFullYear()) {
-    throw new Error('Year must be between 2015 and current year');
 }
 
 if (!day) {
