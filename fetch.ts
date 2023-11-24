@@ -12,24 +12,16 @@ if (!sessionToken) {
     throw new Error('No session token provided');
 }
 
-async function copyTemplate() {
+async function main() {
     await copy('./_template', `./${day}`);
-}
 
-async function fetchInput(): Promise<string> {
     const response = await fetch(`https://adventofcode.com/${year}/day/${day}/input`, {
         headers: {
             cookie: `session=${sessionToken}`,
         },
     });
 
-    return response.text();
-}
-
-async function main() {
-    await copyTemplate();
-
-    const input = await fetchInput();
+    const input = await response.text();
 
     await writeFile(`./${day}/input.txt`, input);
 }
