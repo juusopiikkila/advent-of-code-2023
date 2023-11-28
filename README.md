@@ -1,3 +1,9 @@
+![Branches](https://github.com/juusopiikkila/advent-of-code-2023/raw/gh-pages/badges/coverage-branches.svg?raw=true)
+![Functions](https://github.com/juusopiikkila/advent-of-code-2023/raw/gh-pages/badges/coverage-functions.svg?raw=true)
+![Coverage Status](https://github.com/juusopiikkila/advent-of-code-2023/raw/gh-pages/badges/coverage-jest%20coverage.svg?raw=true)
+![Lines](https://github.com/juusopiikkila/advent-of-code-2023/raw/gh-pages/badges/coverage-lines.svg?raw=true)
+![Statements](https://github.com/juusopiikkila/advent-of-code-2023/raw/gh-pages/badges/coverage-statements.svg?raw=true)
+
 # Fetching puzzle input data
 
 First, add your session token from the adventofcode.com cookie to a `.env` file using the `SESSION_TOKEN` key, like this:
