@@ -18,17 +18,17 @@ jobs:
       - run: yarn install
       - run: yarn test:cov
 
-      - name: Delete remote badges branch
-        run: git push origin --delete badges
+      - name: Delete remote gh-pages branch
+        run: git push origin --delete gh-pages
 
-      - name: Create badges branch
-        run: git checkout -b badges
+      - name: Create gh-pages branch
+        run: git checkout -b gh-pages
 
-      - name: Generating coverage badges
+      - name: Generating coverage gh-pages
         uses: ./
         with:
           branches: '*'
-          target-branch: badges
+          target-branch: gh-pages
 
-      - name: Push badges branch
-        run: git push origin badges
+      - name: Push gh-pages branch
+        run: git push origin gh-pages
