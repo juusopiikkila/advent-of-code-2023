@@ -1,19 +1,26 @@
 import minimist from 'minimist';
+import { printAnswer, readFileToArray } from './utils';
 
 const argv = minimist(process.argv.slice(2));
 
 const day = argv.day || process.env.DAY || (new Date()).getDate();
 
 console.log(`Running day ${day}`);
+console.log('----------------');
 
 async function main() {
-    const program = await import(`./${day}/index.ts`);
+    const module = await import(`./${day}/index.ts`);
 
-    if (program.main === undefined) {
-        throw new Error('No main function exported');
-    }
+    // eslint-disable-next-line new-cap
+    const programInstance = new module.default();
 
-    await program.main();
+    const input = await readFileToArray(`./${day}/input.txt`);
+
+    const part1Answer = await programInstance.runPart1(input);
+    const part2Answer = await programInstance.runPart2(input);
+
+    printAnswer(1, part1Answer);
+    printAnswer(2, part2Answer);
 }
 
 main();

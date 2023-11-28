@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises';
+import { readFile } from 'fs-extra';
 import { js as EasyStar } from 'easystarjs';
 
 export interface Coord {
@@ -12,17 +12,37 @@ export interface PathOptions {
     enableDiagonals?: boolean
 }
 
+export interface ProgramDefinition {
+    runPart1(input: string[]): Promise<number | string[]>
+
+    runPart2(input: string[]): Promise<number | string[]>
+}
+
 export async function readFileToArray(path: string): Promise<string[]> {
     const data = await readFile(path);
     return data.toString().split('\n').slice(0, -1);
 }
 
-export async function getInput(day: string): Promise<string[]> {
-    return readFileToArray(`${day}/input.txt`);
+export function printAnswer(part: number, answer: number | string[]): void {
+    if (Array.isArray(answer)) {
+        console.log(`Part ${part} answer:`);
+        console.log(answer.join('\n'));
+    } else {
+        console.log(`Part ${part} answer:`, answer);
+    }
 }
 
-export async function getExampleInput(day: string, number?: number): Promise<string[]> {
-    return readFileToArray(`${day}/example${number || ''}.txt`);
+export function parseInputString(input: string): string[] {
+    const data = input
+        .split('\n')
+        .map((row) => row.trim())
+        .slice(0, -1);
+
+    if (data[0] === '') {
+        data.shift();
+    }
+
+    return data;
 }
 
 export function generateMap<T = string | number>(
