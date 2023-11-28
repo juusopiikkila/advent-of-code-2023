@@ -18,17 +18,5 @@ jobs:
       - run: yarn install
       - run: yarn test:cov
 
-      - name: Delete remote gh-pages branch
-        run: git push origin --delete gh-pages
-
-      - name: Create gh-pages branch
-        run: git checkout -b gh-pages
-
-      - name: Generating coverage gh-pages
-        uses: ./
-        with:
-          branches: '*'
-          target-branch: gh-pages
-
-      - name: Push gh-pages branch
-        run: git push origin gh-pages
+      - name: Cov Badge And Publish
+        uses: nolleh/jest-badge-deploy-action@v1.0.7

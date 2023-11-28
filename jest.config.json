@@ -9,5 +9,6 @@
         "^.+\\.(t|j)s$": "ts-jest"
     },
     "coverageDirectory": "./coverage",
+    "coverageReporters": ["json-summary", "text"],
     "testEnvironment": "node"
 }
