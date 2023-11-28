@@ -6,6 +6,6 @@ export default class Program implements ProgramDefinition {
     }
 
     async runPart2(input: string[]) {
-        return 0;
+        return 1;
     }
 }
