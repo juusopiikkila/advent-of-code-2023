@@ -25,7 +25,7 @@ async function main() {
         throw new Error(`Day ${day} already exists`);
     }
 
-    await copy('./_template', `./${day}`);
+    await copy('./template', `./${day}`);
 
     const response = await fetch(`https://adventofcode.com/${year}/day/${day}/input`, {
         headers: {
