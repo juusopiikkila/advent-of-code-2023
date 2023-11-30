@@ -45,19 +45,19 @@ describe('printAnswer', () => {
     });
 
     it('should print the answer if it\'s a number', () => {
-        printAnswer(1, 42);
+        printAnswer(42);
 
         expect(consoleSpy).toHaveBeenCalledTimes(1);
 
-        expect(consoleSpy).toHaveBeenCalledWith('Part 1 answer:', 42);
+        expect(consoleSpy).toHaveBeenCalledWith('Answer:', 42);
     });
 
     it('should print the answer if it\'s an array', () => {
-        printAnswer(1, ['42', '43']);
+        printAnswer(['42', '43']);
 
         expect(consoleSpy).toHaveBeenCalledTimes(2);
 
-        expect(consoleSpy).toHaveBeenNthCalledWith(1, 'Part 1 answer:');
+        expect(consoleSpy).toHaveBeenNthCalledWith(1, 'Answer:');
         expect(consoleSpy).toHaveBeenNthCalledWith(2, '42\n43');
     });
 });

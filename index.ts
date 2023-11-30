@@ -10,17 +10,27 @@ console.log('----------------');
 
 async function main() {
     const module = await import(`./${day}/index.ts`);
-
-    // eslint-disable-next-line new-cap
-    const programInstance = new module.default();
-
     const input = await readFileToArray(`./${day}/input.txt`);
 
-    const part1Answer = await programInstance.runPart1(input);
-    const part2Answer = await programInstance.runPart2(input);
+    console.log('Part 1');
+    console.time('Execution time');
+    // eslint-disable-next-line new-cap
+    const part1Instance = new module.default();
+    const part1Answer = await part1Instance.runPart1(input);
+    console.timeEnd('Execution time');
 
-    printAnswer(1, part1Answer);
-    printAnswer(2, part2Answer);
+    printAnswer(part1Answer);
+
+    console.log('----------------');
+
+    console.log('Part 2');
+    console.time('Execution time');
+    // eslint-disable-next-line new-cap
+    const part2Instance = new module.default();
+    const part2Answer = await part2Instance.runPart2(input);
+    console.timeEnd('Execution time');
+
+    printAnswer(part2Answer);
 }
 
 main();

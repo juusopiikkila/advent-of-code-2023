@@ -23,12 +23,12 @@ export async function readFileToArray(path: string): Promise<string[]> {
     return data.toString().split('\n').slice(0, -1);
 }
 
-export function printAnswer(part: number, answer: number | string[]): void {
+export function printAnswer(answer: number | string[]): void {
     if (Array.isArray(answer)) {
-        console.log(`Part ${part} answer:`);
+        console.log('Answer:');
         console.log(answer.join('\n'));
     } else {
-        console.log(`Part ${part} answer:`, answer);
+        console.log('Answer:', answer);
     }
 }
 
