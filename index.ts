@@ -1,5 +1,5 @@
 import minimist from 'minimist';
-import { printAnswer, readFileToArray } from './utils';
+import { ProgramDefinition, printAnswer, readFileToArray } from './utils';
 
 const argv = minimist(process.argv.slice(2));
 
@@ -15,7 +15,7 @@ async function main() {
     console.log('Part 1');
     console.time('Execution time');
     // eslint-disable-next-line new-cap
-    const part1Instance = new module.default();
+    const part1Instance = new module.default() as ProgramDefinition;
     const part1Answer = await part1Instance.runPart1(input);
     console.timeEnd('Execution time');
 
@@ -26,7 +26,7 @@ async function main() {
     console.log('Part 2');
     console.time('Execution time');
     // eslint-disable-next-line new-cap
-    const part2Instance = new module.default();
+    const part2Instance = new module.default() as ProgramDefinition;
     const part2Answer = await part2Instance.runPart2(input);
     console.timeEnd('Execution time');
 

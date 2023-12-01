@@ -13,9 +13,9 @@ export interface PathOptions {
 }
 
 export interface ProgramDefinition {
-    runPart1(input: string[]): Promise<number | string[]>
+    runPart1(input: string[]): Promise<number | string[]> | number | string[]
 
-    runPart2(input: string[]): Promise<number | string[]>
+    runPart2(input: string[]): Promise<number | string[]> | number | string[]
 }
 
 export async function readFileToArray(path: string): Promise<string[]> {
