@@ -36,6 +36,9 @@ async function main() {
     const input = await response.text();
 
     await writeFile(`./${day}/input.txt`, input);
+
+    console.log(`Day ${day} of year ${year} fetched`);
+    console.log(`Link to day ${day}: https://adventofcode.com/${year}/day/${day}`);
 }
 
 main();
