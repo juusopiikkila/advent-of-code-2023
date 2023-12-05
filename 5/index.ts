@@ -164,7 +164,12 @@ export default class Program implements ProgramDefinition {
         const maps = this.getMaps(input);
         const seedRanges = this.getSeedRanges(input, true);
 
-        for (let location = 0; location < Number.POSITIVE_INFINITY; location += 1) {
+        const locationMap = maps.find((map) => map.type === 'humidity-to-location');
+        const maxLocation = Math.max(...locationMap!.ranges.map((range) => (
+            range.destinationRangeStart + range.rangeLength - 1
+        )));
+
+        for (let location = 0; location < maxLocation; location += 1) {
             const seed = this.getSeedLocation(location, maps, true);
 
             for (const [seedRangeStart, seedRangeEnd] of seedRanges) {

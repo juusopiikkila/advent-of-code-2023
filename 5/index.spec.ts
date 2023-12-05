@@ -113,39 +113,28 @@ describe('Part 2', () => {
     it('should throw error if no solutions found', () => {
         expect(() => {
             program.runPart2(parseInputString(`
-                seeds: 0 1
+                seeds: 0 0
 
                 seed-to-soil map:
-                50 98 2
-                52 50 48
+                0 0 1
 
                 soil-to-fertilizer map:
-                0 15 37
-                37 52 2
-                39 0 15
+                0 0 1
 
                 fertilizer-to-water map:
-                49 53 8
-                0 11 42
-                42 0 7
-                57 7 4
+                0 0 1
 
                 water-to-light map:
-                88 18 7
-                18 25 70
+                0 0 1
 
                 light-to-temperature map:
-                45 77 23
-                81 45 19
-                68 64 13
+                0 0 1
 
                 temperature-to-humidity map:
-                0 69 1
-                1 0 69
+                0 0 1
 
                 humidity-to-location map:
-                60 56 37
-                56 93 4
+                0 0 1
             `));
         }).toThrow('No solution found');
     });
