@@ -162,11 +162,9 @@ export default class Program implements ProgramDefinition {
 
     runPart2(input: string[]) {
         const maps = this.getMaps(input);
-        const minLocation = 0;
         const seedRanges = this.getSeedRanges(input, true);
-        const maxSeed = Math.max(...seedRanges.map((range) => range[1]));
 
-        for (let location = minLocation; location < maxSeed; location += 1) {
+        for (let location = 0; location < Number.POSITIVE_INFINITY; location += 1) {
             const seed = this.getSeedLocation(location, maps, true);
 
             for (const [seedRangeStart, seedRangeEnd] of seedRanges) {
