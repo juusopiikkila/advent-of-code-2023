@@ -1090,16 +1090,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash-es@npm:^4":
-  version: 4.17.12
-  resolution: "@types/lodash-es@npm:4.17.12"
-  dependencies:
-    "@types/lodash": "npm:*"
-  checksum: 5d12d2cede07f07ab067541371ed1b838a33edb3c35cb81b73284e93c6fd0c4bbeaefee984e69294bffb53f62d7272c5d679fdba8e595ff71e11d00f2601dde0
-  languageName: node
-  linkType: hard
-
-"@types/lodash@npm:*":
+"@types/lodash@npm:^4":
   version: 4.14.202
   resolution: "@types/lodash@npm:4.14.202"
   checksum: 6064d43c8f454170841bd67c8266cc9069d9e570a72ca63f06bceb484cb4a3ee60c9c1f305c1b9e3a87826049fd41124b8ef265c4dd08b00f6766609c7fe9973
@@ -1440,7 +1431,7 @@ __metadata:
     "@types/eslint": "npm:^8.44.7"
     "@types/fs-extra": "npm:^11"
     "@types/jest": "npm:^29.5.10"
-    "@types/lodash-es": "npm:^4"
+    "@types/lodash": "npm:^4"
     "@types/minimist": "npm:^1"
     "@types/node": "npm:^20.10.0"
     "@typescript-eslint/eslint-plugin": "npm:^6.12.0"
@@ -1458,7 +1449,8 @@ __metadata:
     eslint-plugin-unicorn: "npm:^49.0.0"
     fs-extra: "npm:^11.1.1"
     jest: "npm:^29.7.0"
-    lodash-es: "npm:^4.17.21"
+    js-combinatorics: "npm:^2.1.2"
+    lodash: "npm:^4.17.21"
     minimist: "npm:^1.2.8"
     ts-jest: "npm:^29.1.1"
     ts-node: "npm:^10.9.1"
@@ -3971,6 +3963,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-combinatorics@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "js-combinatorics@npm:2.1.2"
+  checksum: 32f3935612d0410a4149179c23a8d4e19f89de1062fb4505193b5dc5a3fbde57eea76f909daa25f1bfdc1fc6c741ca6ba0c8ccfff562ff92261ef89117f828d4
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -4147,13 +4146,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash-es@npm:^4.17.21":
-  version: 4.17.21
-  resolution: "lodash-es@npm:4.17.21"
-  checksum: fb407355f7e6cd523a9383e76e6b455321f0f153a6c9625e21a8827d10c54c2a2341bd2ae8d034358b60e07325e1330c14c224ff582d04612a46a4f0479ff2f2
-  languageName: node
-  linkType: hard
-
 "lodash.memoize@npm:4.x":
   version: 4.1.2
   resolution: "lodash.memoize@npm:4.1.2"
@@ -4165,6 +4157,13 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: 402fa16a1edd7538de5b5903a90228aa48eb5533986ba7fa26606a49db2572bf414ff73a2c9f5d5fd36b31c46a5d5c7e1527749c07cbcf965ccff5fbdf32c506
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
   languageName: node
   linkType: hard
 
