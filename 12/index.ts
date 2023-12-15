@@ -1,36 +1,93 @@
 import type { ProgramDefinition } from '../utils';
 
-type Combination = number[];
-
 export default class Program implements ProgramDefinition {
-    * generateCombinations(
-        array: number[],
-        maxSum: number,
-        startIndex: number = 0,
-        currentCombination: Combination = [],
-        currentSum: number = 0,
-    ): Generator<Combination> {
-        // If we've reached the end of the array, check if the current sum equals maxSum
-        if (startIndex === array.length) {
-            if (currentSum === maxSum) {
-                yield currentCombination;
-            }
+    memoize(memo: Record<number, number[]>, pos: number, runs: number[], result: number) {
+        const memoPos = memo[pos] || [];
 
-            return;
+        memo[pos] = memoPos;
+
+        memoPos[runs.length] = result;
+
+        return memoPos[runs.length];
+    }
+
+    countArrangements(conditions: string, pos: number, runs: number[], minLength: number, memo: number[][]): number {
+        if (typeof memo[pos]?.[runs.length] === 'number') {
+            return memo[pos][runs.length];
         }
 
-        // Iterate over possible values for the current position
-        for (let index = array[startIndex]; currentSum + index <= maxSum; index += 1) {
-            for (const combination of this.generateCombinations(
-                array,
-                maxSum,
-                startIndex + 1,
-                [...currentCombination, index],
-                currentSum + index,
-            )) {
-                yield combination;
-            }
+        if (runs.length === 0) {
+            return conditions.includes('#', pos) ? 0 : 1;
         }
+
+        if (pos + minLength > conditions.length) {
+            return this.memoize(memo, pos, runs, 0);
+        }
+
+        if (conditions[pos] === '.') {
+            let nextPos = pos;
+
+            while (conditions[nextPos] === '.') {
+                nextPos += 1;
+            }
+
+            return this.memoize(memo, pos, runs, this.countArrangements(conditions, nextPos, runs, minLength, memo));
+        }
+
+        if (pos >= conditions.length) {
+            return this.memoize(memo, pos, runs, runs.length === 0 ? 1 : 0);
+        }
+
+        if (conditions[pos] === '#') {
+            if (conditions.length - pos < runs[0]) {
+                return this.memoize(memo, pos, runs, 0);
+            }
+
+            for (let index = 0; index < runs[0]; index += 1) {
+                if (conditions[pos + index] === '.') return this.memoize(memo, pos, runs, 0);
+            }
+
+            if (conditions[pos + runs[0]] === '#') {
+                return this.memoize(memo, pos, runs, 0);
+            }
+
+            return this.memoize(
+                memo,
+                pos,
+                runs,
+                this.countArrangements(conditions, pos + runs[0] + 1, runs.slice(1), minLength - runs[0] - 1, memo),
+            );
+        }
+
+        if (conditions[pos] === '?') {
+            let result = this.countArrangements(conditions, pos + 1, runs, minLength, memo);
+
+            if (conditions.length - pos < runs[0]) {
+                return this.memoize(memo, pos, runs, result);
+            }
+
+            for (let index = 0; index < runs[0]; index += 1) {
+                if (conditions[pos + index] === '.') {
+                    return this.memoize(memo, pos, runs, result);
+                }
+            }
+
+            if (conditions[pos + runs[0]] === '#') {
+                return this.memoize(memo, pos, runs, result);
+            }
+
+            result += this.countArrangements(
+                conditions,
+                pos + runs[0] + 1,
+                runs.slice(1),
+                minLength - runs[0] - 1,
+                memo,
+            );
+
+            return this.memoize(memo, pos, runs, result);
+        }
+
+        throw new Error("This shouldn't happen");
     }
 
     getPermutations(line: string, unfold = false) {
@@ -40,37 +97,17 @@ export default class Program implements ProgramDefinition {
             throw new Error(`Invalid input: ${line}`);
         }
 
-        let springs = matches[1];
-        let groups = matches[2].split(',').map(Number);
+        let conditions = matches[1];
+        let runs = matches[2].split(',').map(Number);
 
         if (unfold) {
-            springs = Array.from({ length: 5 }, () => springs).join('?');
-            groups = Array.from({ length: 5 }, () => groups).flat();
+            conditions = Array.from({ length: 5 }, () => conditions).join('?');
+            runs = Array.from({ length: 5 }, () => runs).flat();
         }
 
-        springs = springs.replaceAll(/^\.+/g, '').replaceAll(/\.+$/g, '');
+        const minLength = runs.reduce((a, b) => a + b) + (runs.length - 1);
 
-        const springsRegex = new RegExp(`^${springs.replaceAll('.', '\\.').replaceAll('?', '.')}$`);
-        const maxSpacers = springs.length - groups.reduce((a, b) => a + b, 0);
-        const spacerGroups = Array.from({ length: groups.length - 1 + 2 })
-            .map((_, index, array) => (index === 0 || index === array.length - 1 ? 0 : 1));
-        const springGroups = groups.map((count) => Array.from({ length: count }, () => '#').join(''));
-
-        let matchingCount = 0;
-
-        for (const combination of this.generateCombinations(spacerGroups, maxSpacers)) {
-            const result = combination.map((count, index) => {
-                const spacers = Array.from({ length: count }, () => '.').join('');
-
-                return `${spacers}${springGroups[index] || ''}`;
-            }).join('');
-
-            if (springsRegex.test(result)) {
-                matchingCount += 1;
-            }
-        }
-
-        return matchingCount;
+        return this.countArrangements(conditions, 0, runs, minLength, []);
     }
 
     runPart1(input: string[]) {
